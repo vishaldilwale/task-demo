@@ -1,7 +1,4 @@
-// import logo from './logo.svg';
-// import './App.css';
-
-function PageNotFound() {
+const PageNotFound = () => {
   return (
     <div className="App">
       <h2>PageNotFound</h2>
