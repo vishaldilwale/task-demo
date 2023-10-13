@@ -100,11 +100,11 @@ const AboutUs = () => {
             {subTitleText}
 
             <div style={otpSection}>
-              <div className="flex flex-2 flex-wrap flex-auto -ml-2">
+              <div className="flex flex-2 flex-wrap flex-auto -ml-4">
                 {sources?.map((s) => {
                   const isSelected = selectedSource === s?.value;
                   return (
-                    <div style={pillStyle} className={`ml-2 flex flex-grow items-center my-2 p-5 bg-gray-100 cursor-pointer ${isSelected ? `outline outline-1 outline-blue-800 rounded` : ``}`} onClick={() => handleSelect(s)}>
+                    <div style={pillStyle} className={`ml-4 flex flex-grow items-center my-2 p-5 bg-gray-100 cursor-pointer ${isSelected ? `outline outline-1 outline-blue-800 rounded` : ``}`} onClick={() => handleSelect(s)}>
                       <img style={activeIconStyle} alt="" src={getImagePath(isSelected ? "checkIconActive.svg" : "checkIcon.svg")} />
                       <h6 className={`ml-3 mr-2 ${isSelected ? `text-blue-800` : `text-gray-400`}`} style={pillTextStyle}>{s?.label}</h6>
                     </div>
