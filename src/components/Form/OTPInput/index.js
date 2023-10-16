@@ -92,7 +92,7 @@ const OTPInput = forwardRef(function(props, ref) {
                   <input name={index} value={otp[index] || ""} onChange={(e) => handleInputChange(e, index)}
                     ref={refs[index + 1]}
                     className="mr-8 appearance-none block w-14 h-14 bg-gray-100 p-5 text-gray-700 border-gray-200 rounded py-3 leading-tight focus:outline focus:bg-white focus:border-gray-500"
-                    type="text"
+                    type="number"
                     placeholder="" />
                 )
               })}
