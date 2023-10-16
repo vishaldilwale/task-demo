@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Banner from '../../../components/Banner';
 import BannerForm from '../../../components/Banner Forms';
 import TextInput from '../../../components/Form/TextInput';
+import { colors } from '../../../constants';
 import helpers from '../../../helpers';
 
 const ProfileDetails = () => {
@@ -10,20 +11,6 @@ const ProfileDetails = () => {
   const [error, setError] = useState("");
   const fullNameRef = useRef();
   const navigate = useNavigate();
-  const yellowText = {
-    color: "#F15D2A",
-    fontWeight: '700'
-  };
-  const subTitle = {
-    fontSize: "22px",
-    fontWeight: '400',
-    lineHeight: "26px",
-    margin: "60px 0px 30px 0px"
-  }
-  const otpSection = {
-    maxWidth: "400px",
-    margin: "20px auto"
-  };
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -70,23 +57,12 @@ const ProfileDetails = () => {
       navigate("/source")
     }
   };
-  const titleText = <h6 style={subTitle}>Get Started <br />
-    On Your  <span style={yellowText}>Investment Journey!</span></h6>;
+  const titleText = <h6 className='text-[22px] font-normal leading-6'>Get Started <br />
+    On Your  <span className={`font-bold text-[${colors.yellowTitle}]`}>Investment Journey!</span></h6>;
 
   useEffect(() => {
     fullNameRef.current.focus();
   }, []);
-
-  // const labelComponent = useCallback((label, labelFor, isRequired) => (
-  //   <label class="block text-500 text-sm font-medium mb-2" for={labelFor || ""}>
-  //     {label} {isRequired && "*"}
-  //   </label>
-  // ), []);
-  // const errorComponent = useCallback((msg = "") => (
-  //   <span className="mt-1 text-sm text-red-600 dark:text-red-500">
-  //     {msg}
-  //   </span>
-  // ), []);
 
   const marginComponent = <div className="mb-4" />;
 
@@ -95,16 +71,9 @@ const ProfileDetails = () => {
       <div className='hidden w-full md:w-6/12 h-1/2 md:h-screen md:block' >
         <Banner />
       </div>
-      <div className='w-full md:w-6/12 h-1/2 md:h-screen' >
+      <div className='w-full md:w-6/12 h-1/2 md:h-screen max-w-[400px] mx-auto' >
         <BannerForm onSubmit={handleSubmit} title={titleText} btnText="Next">
-          <div style={otpSection}>
-            {/* {labelComponent("Full Name", "fullname", true)}
-            <input name="fullname" id="fullname" value={user?.fullname} onChange={(e) => handleInputChange(e)}
-              ref={fullNameRef}
-              className="appearance-none block w-full h-14 bg-gray-100 p-5 text-gray-700 border-gray-200 rounded py-3 leading-tight focus:outline focus:bg-white focus:border-gray-500"
-              type="text"
-              placeholder="Enter Your Name*" />
-            {error?.fullname && errorComponent(error?.fullname)} */}
+          <div className='my-[20px] mx-auto'>
             <TextInput
             name="fullname" id="fullname" value={user?.fullname}
             onChange={(e) => handleInputChange(e)}
@@ -119,14 +88,6 @@ const ProfileDetails = () => {
 
             {marginComponent}
 
-            {/* {labelComponent("Email", "email", true)}
-            <input name="email" value={user?.email} onChange={(e) => handleInputChange(e)}
-              id='email'
-              autoComplete='email'
-              className="appearance-none block w-full h-14 bg-gray-100 p-5 text-gray-700 border-gray-200 rounded py-3 leading-tight focus:outline focus:bg-white focus:border-gray-500"
-              placeholder="Email*" />
-            {error?.email && errorComponent(error?.email)} */}
-
             <TextInput
             name="email" id="email" value={user?.email}
             onChange={(e) => handleInputChange(e)}
@@ -136,15 +97,7 @@ const ProfileDetails = () => {
               labelFor="Email"
               error={error?.email && error?.email}
             />
-
             {marginComponent}
-
-            {/* {labelComponent("Referral Code", "referralCode")}
-            <input name="referralCode" value={user?.referralCode} onChange={(e) => handleInputChange(e)}
-              id="referralCode"
-              className="appearance-none block w-full h-14 bg-gray-100 p-5 text-gray-700 border-gray-200 rounded py-3 leading-tight focus:outline focus:bg-white focus:border-gray-500"
-              type="text"
-              placeholder="Enter Referral Code" /> */}
                 <TextInput
             name="referralCode" id="referralCode" value={user?.referralCode}
             onChange={(e) => handleInputChange(e)}

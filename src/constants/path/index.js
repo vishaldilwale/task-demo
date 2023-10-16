@@ -5,4 +5,6 @@ export const PATH = {
     details: "/details",
     source: "/source",
     investPlan: "/invest-plan",
-  }
+    termsAndConditions: "https://www.incredmoney.com/terms-of-use/",
+  };
+

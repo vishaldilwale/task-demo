@@ -2,65 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Banner from '../../../components/Banner';
 import BannerForm from '../../../components/Banner Forms';
-import { getImagePath } from '../../../utils';
+import SelectablePills from '../../../components/SelectablePills';
+import { hearAboutUsOptions } from '../../../constants/data';
 
 const AboutUs = () => {
   const [selectedSource, setSelectedSource] = useState("");
   const navigate = useNavigate();
-
-  const yellowText = {
-    color: "#F15D2A",
-  };
-  const subTitle = {
-    fontWeight: '400',
-    lineHeight: "26px",
-  }
-  const otpSection = {
-    maxWidth: "400px",
-    margin: "20px auto"
-  };
-
-
-  const activeIconStyle = {
-    height: "10px",
-    width: "13px",
-    filter: "brightness(1)"
-  }
-
-  const pillStyle = {
-    height: "53px",
-  }
-  const pillTextStyle = {
-    fontWeight: "500",
-    fontSize: "16px",
-  }
-
-  const sources = [
-    {
-      label: "Facebook/Instagram",
-      value: "facebook/instagram"
-    },
-    {
-      label: "Friend",
-      value: "friend"
-    },
-    {
-      label: "Google",
-      value: "google"
-    },
-    {
-      label: "LinkedIn",
-      value: "linkedIn"
-    },
-    {
-      label: "Youtube",
-      value: "youtube"
-    },
-    {
-      label: "News article/TV",
-      value: "news article/tv"
-    },
-  ]
 
   const handleSelect = (selectObj) => {
     const { value } = selectObj;
@@ -85,9 +32,8 @@ const AboutUs = () => {
   const userDetails = localStorage.getItem("user");
   const fullname = JSON.parse(userDetails)?.fullname;
 
-  const titleText = <h6 style={subTitle} className="block md:hidden text-blue-700 font-normal">Hello <br /> <span className='font-extrabold' style={yellowText}>{fullname}{fullname && ","}</span></h6>;
-  const subTitleText = <h6 className='text=[18px] md:text-[22px]' style={subTitle}>Where did you hear about us?</h6>;
-
+  const titleText = <h6 className="block md:hidden text-blue-700 text-[28px] font-normal leading-8">Hello <br /> <span className={`font-bold text-[#F15D2A]`}>{fullname}{fullname && ","}</span></h6>;
+  const subTitleText = <h6 className='text-[18px] md:text-[22px] font-semibold md:font-normal'>Where did you hear about us?</h6>;
 
   return (
     <div className="flex flex-wrap sm:block md:flex p-5 md:p-0">
@@ -99,18 +45,8 @@ const AboutUs = () => {
           <div>
             {subTitleText}
 
-            <div style={otpSection}>
-              <div className="flex flex-2 flex-wrap flex-auto -ml-4">
-                {sources?.map((s) => {
-                  const isSelected = selectedSource === s?.value;
-                  return (
-                    <div style={pillStyle} className={`ml-4 flex flex-grow items-center my-2 p-5 bg-gray-100 cursor-pointer ${isSelected ? `outline outline-1 outline-blue-800 rounded` : ``}`} onClick={() => handleSelect(s)}>
-                      <img style={activeIconStyle} alt="" src={getImagePath(isSelected ? "checkIconActive.svg" : "checkIcon.svg")} />
-                      <h6 className={`ml-3 mr-2 ${isSelected ? `text-blue-800` : `text-gray-400`}`} style={pillTextStyle}>{s?.label}</h6>
-                    </div>
-                  )
-                })}
-              </div>
+            <div className="max-w-[400px] my-[20px] mx-auto">
+                            <SelectablePills isInline options={hearAboutUsOptions} selected={selectedSource} handleSelect={handleSelect}/>
             </div>
           </div>
         </BannerForm>
